@@ -1,0 +1,222 @@
+{
+  "exams": [
+    {
+      "id": "exam1",
+      "title": "Intro to Programming",
+      "description": "Test your basic programming knowledge in multiple languages.",
+      "duration": 45,
+      "allowedAttempts": 2,
+      "isActive": true,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "title": "What does HTML stand for?",
+          "description": "",
+          "points": 5,
+          "options": [
+            "Hyperlinks and Text Markup Language",
+            "Home Tool Markup Language",
+            "Hyper Text Markup Language",
+            "Hyper Tool Multi Language"
+          ],
+          "correctAnswer": 2
+        },
+        {
+          "id": "q2",
+          "type": "coding",
+          "title": "Print Hello World",
+          "description": "Write a program that prints 'Hello, World!' to the standard output.",
+          "points": 10,
+          "difficulty": "Easy",
+          "functionName": "hello_world",
+          "examples": [{ "input": "", "output": "Hello, World!" }],
+          "tags": ["Basics", "Output"],
+          "testCases": [
+            {
+              "id": 0,
+              "name": "basic",
+              "input": [],
+              "expectedOutput": "Hello, World!"
+            }
+          ],
+          "functionTemplate": {
+            "python": "def hello_world():\n",
+            "java": "static void helloWorld() {\n}",
+            "cpp": "void helloWorld() {\n}",
+            "c": "void hello_world() {\n}",
+            "javascript": "function hello_world() {\n}"
+          },
+          "languageTemplates": {
+            "python": {
+              "template": "{{{code}}}\n\ndef run_tests():\n    test_cases = [{{#testRuns}}\n        ({{{inputs}}}),\n    {{/testRuns}}]\n\n    for i, inputs in enumerate(test_cases):\n        try:\n            output = hello_world(*inputs)\n            print(f\"{i}:{output}\")\n        except Exception:\n            print(f\"{i}:error\")\n\nrun_tests()"
+            },
+            "java": {
+              "template": "public class Main {\n  {{{code}}}\n  public static void main(String[] args) {\n    Object[][] testCases = new Object[][] {\n      {{#testRuns}}new Object[] { {{inputs}} },\n{{/testRuns}}    };\n    for (int i = 0; i < testCases.length; i++) {\n      try {\n        Object[] input = testCases[i];\n        Object result = helloWorld();\n        System.out.println(i + \":\" + result);\n      } catch (Exception e) {\n        System.out.println(i + \":error\");\n      }\n    }\n  }\n}"
+            },
+            "cpp": {
+              "template": "#include <iostream>\nusing namespace std;\n\n{{{code}}}\n\nint main() {\n  int i = 0;\n  {{#testRuns}}\n  try {\n    cout << i++ << \":\" << helloWorld() << endl;\n  } catch (...) {\n    cout << i++ << \":error\" << endl;\n  }\n  {{/testRuns}}\n  return 0;\n}"
+            },
+            "c": {
+              "template": "#include <stdio.h>\n\n{{{code}}}\n\nint main() {\n  int i = 0;\n  {{#testRuns}}\n  printf(\"%d:%s\\n\", i++, hello_world());\n  {{/testRuns}}\n  return 0;\n}"
+            },
+            "javascript": {
+              "template": "{{{code}}}\n\nconst testCases = [{{#testRuns}}\n  [{{{inputs}}}],\n{{/testRuns}}];\ntestCases.forEach((input, i) => {\n  try {\n    const result = hello_world(...input);\n    console.log(`${i}:${result}`);\n  } catch (e) {\n    console.log(`${i}:error`);\n  }\n});"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "exam2",
+      "title": "Simple Arithmetic",
+      "description": "Test your understanding of simple math functions.",
+      "duration": 60,
+      "allowedAttempts": 2,
+      "isActive": true,
+      "questions": [
+        {
+          "id": "q3",
+          "type": "mcq",
+          "title": "Which symbol is used for exponentiation in Python?",
+          "description": "",
+          "points": 5,
+          "options": ["^", "**", "//", "exp()"],
+          "correctAnswer": 1
+        },
+        {
+          "id": "q4",
+          "type": "coding",
+          "title": "Add Two Numbers",
+          "description": "Write a function that returns the sum of two integers.",
+          "points": 15,
+          "difficulty": "Easy",
+          "functionName": "add",
+          "constraints": ["-10⁶ ≤ a, b ≤ 10⁶"],
+          "examples": [
+            { "input": "2, 3", "output": "5" },
+            { "input": "-1, 1", "output": "0" }
+          ],
+          "tags": ["Math"],
+          "testCases": [
+            {
+              "id": 0,
+              "name": "positive",
+              "input": ["2", "3"],
+              "expectedOutput": "5"
+            },
+            {
+              "id": 1,
+              "name": "zero",
+              "input": ["0", "0"],
+              "expectedOutput": "0"
+            },
+            {
+              "id": 2,
+              "name": "large",
+              "input": ["999999", "1"],
+              "expectedOutput": "1000000"
+            }
+          ],
+          "functionTemplate": {
+            "python": "def add(a, b):\n",
+            "java": "static int add(int a, int b) {\n}",
+            "cpp": "int add(int a, int b) {\n}",
+            "c": "int add(int a, int b) {\n",
+            "javascript": "function add(a, b) {\n}"
+          },
+          "languageTemplates": {
+            "python": {
+              "template": "{{{code}}}\n\ndef run_tests():\n    test_cases = [{{#testRuns}}\n        ({{{inputs}}}),\n    {{/testRuns}}]\n\n    for i, inputs in enumerate(test_cases):\n        try:\n            output = add(*inputs)\n            print(f\"{i}:{output}\")\n        except Exception:\n            print(f\"{i}:error\")\n\nrun_tests()"
+            },
+            "java": {
+              "template": "public class Main {\n  {{{code}}}\n  public static void main(String[] args) {\n    Object[][] testCases = new Object[][] {\n      {{#testRuns}}new Object[] { {{inputs}} },\n{{/testRuns}}    };\n    for (int i = 0; i < testCases.length; i++) {\n      try {\n        Object[] input = testCases[i];\n        Object result = add((int) input[0], (int) input[1]);\n        System.out.println(i + \":\" + result);\n      } catch (Exception e) {\n        System.out.println(i + \":error\");\n      }\n    }\n  }\n}"
+            },
+            "cpp": {
+              "template": "#include <iostream>\nusing namespace std;\n\n{{{code}}}\n\nint main() {\n  int i = 0;\n  {{#testRuns}}\n  try {\n    cout << i++ << \":\" << add({{{inputs}}}) << endl;\n  } catch (...) {\n    cout << i++ << \":error\" << endl;\n  }\n  {{/testRuns}}\n  return 0;\n}"
+            },
+            "c": {
+              "template": "#include <stdio.h>\n\n{{{code}}}\n\nint main() {\n  int i = 0;\n  {{#testRuns}}\n  printf(\"%d:%d\\n\", i++, add({{{inputs}}}));\n  {{/testRuns}}\n  return 0;\n}"
+            },
+            "javascript": {
+              "template": "{{{code}}}\n\nconst testCases = [{{#testRuns}}\n  [{{{inputs}}}],\n{{/testRuns}}];\ntestCases.forEach((input, i) => {\n  try {\n    const result = add(...input);\n    console.log(`${i}:${result}`);\n  } catch (e) {\n    console.log(`${i}:error`);\n  }\n});"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "exam3",
+      "title": "Conditionals & Control Flow",
+      "description": "Test on conditions and logic.",
+      "duration": 50,
+      "allowedAttempts": 1,
+      "isActive": true,
+      "questions": [
+        {
+          "id": "q5",
+          "type": "mcq",
+          "title": "What is the output of 5 > 3 && 2 < 4 in JavaScript?",
+          "description": "",
+          "points": 5,
+          "options": ["true", "false", "undefined", "SyntaxError"],
+          "correctAnswer": 0
+        },
+        {
+          "id": "q6",
+          "type": "coding",
+          "title": "Check Even or Odd",
+          "description": "Return 'Even' if the number is even, otherwise 'Odd'.",
+          "points": 15,
+          "difficulty": "Easy",
+          "functionName": "check_even_odd",
+          "tags": ["Conditional"],
+          "constraints": ["-10⁶ ≤ n ≤ 10⁶"],
+          "examples": [
+            { "input": "4", "output": "Even" },
+            { "input": "7", "output": "Odd" }
+          ],
+          "testCases": [
+            {
+              "id": 0,
+              "name": "even",
+              "input": ["4"],
+              "expectedOutput": "Even"
+            },
+            { "id": 1, "name": "odd", "input": ["7"], "expectedOutput": "Odd" },
+            {
+              "id": 2,
+              "name": "zero",
+              "input": ["0"],
+              "expectedOutput": "Even"
+            }
+          ],
+          "functionTemplate": {
+            "python": "def check_even_odd(n):\n",
+            "java": "static String check_even_odd(int n) {\n}",
+            "cpp": "string check_even_odd(int n) {\n}",
+            "c": "char* check_even_odd(int n) {\n}",
+            "javascript": "function check_even_odd(n) {\n}"
+          },
+          "languageTemplates": {
+            "python": {
+              "template": "{{{code}}}\n\ndef run_tests():\n    test_cases = [{{#testRuns}}\n        ({{{inputs}}}),\n    {{/testRuns}}]\n\n    for i, inputs in enumerate(test_cases):\n        try:\n            output = check_even_odd(*inputs)\n            print(f\"{i}:{output}\")\n        except Exception:\n            print(f\"{i}:error\")\n\nrun_tests()"
+            },
+            "java": {
+              "template": "public class Main {\n  {{{code}}}\n  public static void main(String[] args) {\n    Object[][] testCases = new Object[][] {\n      {{#testRuns}}new Object[] { {{inputs}} },\n{{/testRuns}}    };\n    for (int i = 0; i < testCases.length; i++) {\n      try {\n        Object[] input = testCases[i];\n        Object result = check_even_odd((int) input[0]);\n        System.out.println(i + \":\" + result);\n      } catch (Exception e) {\n        System.out.println(i + \":error\");\n      }\n    }\n  }\n}"
+            },
+            "cpp": {
+              "template": "#include <iostream>\nusing namespace std;\n\n{{{code}}}\n\nint main() {\n  int i = 0;\n  {{#testRuns}}\n  try {\n    cout << i++ << \":\" << check_even_odd({{{inputs}}}) << endl;\n  } catch (...) {\n    cout << i++ << \":error\" << endl;\n  }\n  {{/testRuns}}\n  return 0;\n}"
+            },
+            "c": {
+              "template": "#include <stdio.h>\n\n{{{code}}}\n\nint main() {\n  int i = 0;\n  {{#testRuns}}\n  printf(\"%d:%s\\n\", i++, check_even_odd({{{inputs}}}));\n  {{/testRuns}}\n  return 0;\n}"
+            },
+            "javascript": {
+              "template": "{{{code}}}\n\nconst testCases = [{{#testRuns}}\n  [{{{inputs}}}],\n{{/testRuns}}];\ntestCases.forEach((input, i) => {\n  try {\n    const result = check_even_odd(...input);\n    console.log(`${i}:${result}`);\n  } catch (e) {\n    console.log(`${i}:error`);\n  }\n});"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
